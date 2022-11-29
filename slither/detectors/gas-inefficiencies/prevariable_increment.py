@@ -5,10 +5,10 @@ Gas: The ++ operator should be written before the variable
 from collections import defaultdict
 
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
+from slither.slithir.operations import VariableIncrements
 from slither.analyses.data_dependency.data_dependency import is_tainted
 from slither.core.solidity_types.elementary_type import ElementaryType
-from slither.slithir.operations import Send, Transfer, LowLevelCall
-from slither.slithir.operations import Call
+
 
 class GasInefficientLoopCheck(AbstractDetector):
     """
@@ -20,10 +20,9 @@ class GasInefficientLoopCheck(AbstractDetector):
     IMPACT = DetectorClassification.LOW
     CONFIDENCE = DetectorClassification.MEDIUM
 
-    WIKI = "https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation"
+    WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#i-costs-less-gas-compared-to-i-or-i--1"
     WIKI_TITLE = "The increment in the for loops post condition can be made unchecked"
     WIKI_DESCRIPTION = "Overflow checks are made by the compiler and you can use unchecked within the for loop to save gas" 
 
-    def _contains_prevariable_increments():
-        
-        return 
+    def _is_instance(self, ir):  # pylint: disable=no-self-use
+        return isinstance(ir, VariableIncrements)
