@@ -24,3 +24,6 @@ class GasInefficientLoopLength(AbstractDetector):
     WIKI_TITLE = "Caching the length in for loops"
     WIKI_DESCRIPTION = "Reading array length at each iteration of the loop takes 6 gas" 
     
+    def _contains_arraylength_forloop():
+
+        return 

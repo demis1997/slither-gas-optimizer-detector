@@ -23,4 +23,7 @@ class GasInefficientLoopCheck(AbstractDetector):
     WIKI = "https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation"
     WIKI_TITLE = "The increment in the for loops post condition can be made unchecked"
     WIKI_DESCRIPTION = "Overflow checks are made by the compiler and you can use unchecked within the for loop to save gas" 
-    
+
+    def _contains_prevariable_increments():
+        
+        return 
