@@ -20,7 +20,7 @@ class GasInefficientLoopLength(AbstractDetector):
     IMPACT = DetectorClassification.LOW
     CONFIDENCE = DetectorClassification.MEDIUM
 
-    WIKI = "https://github.com/crytic/slither/wiki/Detector-Documentation#missing-zero-address-validation"
+    WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#caching-the-length-in-for-loops"
     WIKI_TITLE = "Caching the length in for loops"
     WIKI_DESCRIPTION = "Reading array length at each iteration of the loop takes 6 gas" 
     
