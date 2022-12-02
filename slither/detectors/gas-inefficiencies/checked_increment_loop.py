@@ -15,7 +15,7 @@ class GasUncheckedIncrementLoop(AbstractDetector):
     Gas: Checked variable increment
     """
 
-    ARGUMENT = "gas-chekced-increment-for-loop"
+    ARGUMENT = "gas-checked-increment-for-loop"
     HELP = "The increment in the for loop post condition can be made unchecked"
     IMPACT = DetectorClassification.LOW
     CONFIDENCE = DetectorClassification.MEDIUM
