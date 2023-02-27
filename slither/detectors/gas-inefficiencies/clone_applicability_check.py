@@ -2,12 +2,10 @@
 Gas: Consider using a clone when deploying a factory contract.
 
 """
-from collections import defaultdict
-
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
-from slither.slithir.operations import VariableIncrements
-from slither.analyses.data_dependency.data_dependency import is_tainted
-from slither.core.solidity_types.elementary_type import ElementaryType
+from slither.solidity_types.function_type import FunctionType
+from slither.solc_parsing import SolcParsing
+from slither.core.solidity_types.contract_type import ContractType
 
 
 class GasCloneApplicabilityCheck(AbstractDetector):
@@ -22,7 +20,28 @@ class GasCloneApplicabilityCheck(AbstractDetector):
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#use-clones-for-cheap-contract-deployments"
     WIKI_TITLE = "Use Clones for Cheap Contract Deployments"
-    WIKI_DESCRIPTION = "Porter Finance deployed using clones and found that it was 10x cheaper gas-wise. It is worth checking the wiki to see how you could make your factory contract a clone." 
+    WIKI_DESCRIPTION = "Porter Finance deployed using clones and found that it was 10x cheaper gas-wise. It is worth checking the wiki to see how you could make your factory contract a clone."
 
-    def _is_instance(self, ir):  # pylint: disable=no-self-use
-        return isinstance(ir, VariableIncrements)
+    def _get_factory_functions(self, contract):
+        factory_functions = []
+        for function in contract.functions:
+            if isinstance(function.type, FunctionType) and function.type.is_public and function.type.name == "create":
+                factory_functions.append(function)
+        return factory_functions
+
+    def analyze(self):
+        # Get all the contracts in the analyzed project
+        all_contracts = SolcParsing.get_contracts(self.slither.crytic_project.all_source_codes)
+
+        # Check each contract for factory functions
+        for contract in all_contracts:
+            if isinstance(contract, ContractType) and self._get_factory_functions(contract):
+                self._issues.append({
+                    "contract": contract.name,
+                    "title": self.WIKI_TITLE,
+                    "description": self.WIKI_DESCRIPTION,
+                    "type": self.__class__.__name__,
+                    "severity": self.IMPACT,
+                    "confidence": self.CONFIDENCE,
+                    "locations": [{"node": contract.node}]
+                })
