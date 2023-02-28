@@ -1,6 +1,6 @@
 from slither.detectors.abstract_detector import DetectorClassification, AbstractDetector
 from slither.slithir.operations import SLoad, SStore, MLoad, MStore
-from slither.core.variable import Variable
+from slither.core import Variable
 
 class StorageCacheDetector(AbstractDetector):
     """
