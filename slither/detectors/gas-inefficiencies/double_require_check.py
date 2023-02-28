@@ -33,3 +33,5 @@ if __name__ == "__main__":
     slither = Slither(".")
     detector = DoubleRequireCheck(slither)
     detector.run()
+
+" use slither double_require_check.py"
