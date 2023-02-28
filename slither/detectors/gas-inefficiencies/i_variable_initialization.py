@@ -27,3 +27,5 @@ class GasIVariableInitCheck(AbstractDetector):
                             if isinstance(variable.type, ElementaryType) and variable.type.name == "uint256":
                                 if not is_tainted(init.operand, {"tainted": []}, {"tainted": [variable]}):
                                     self._issues.append({"variable": variable.name, "node": node.src_code, "lineno": node.lineno})
+
+                                    "run slither <path-to-contract> GasIVariableInitCheck"
