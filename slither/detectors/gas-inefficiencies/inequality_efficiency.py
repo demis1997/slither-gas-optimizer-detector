@@ -1,28 +1,37 @@
-"""
-Gas: Using non-strict inequalities (>=) is more efficient gas-wise than using strict inequalities (>).
-
-"""
-from collections import defaultdict
-
-from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
-from slither.slithir.operations import VariableIncrements
-from slither.analyses.data_dependency.data_dependency import is_tainted
 from slither.core.solidity_types.elementary_type import ElementaryType
+from slither.detectors.abstract_detector import DetectorClassification
+from slither.detectors.abstract_detector import DetectorResult
+from slither.detectors.abstract_detector import DetectorSeverity
+from slither.detectors.abstract_detector import DetectorType
+from slither.slithir.operations import Operation
+from slither  import Lt, Gt
+from slither import Not
 
+class InefficientInequalityDetector:
+    def __init__(self, contracts):
+        self.contracts = contracts
+        self.results = {}
 
-class GasInequalityEfficiencyCheck(AbstractDetector):
-    """
-    Gas: Using non-strict inequalities (>=) is more efficient gas-wise than using strict inequalities (>).
-    """
+    def analyze(self):
+        for contract in self.contracts:
+            for function in contract.functions:
+                for block in function.blocks:
+                    for operation in block.operations:
+                        if isinstance(operation, (Lt, Gt)):
+                            if isinstance(operation.left, Operation) or isinstance(operation.right, Operation):
+                                continue
+                            if isinstance(operation.left, Not) or isinstance(operation.right, Not):
+                                continue
+                            if isinstance(operation.left.typ, (bool, ElementaryType)) and isinstance(operation.right.typ, (bool, ElementaryType)):
+                                continue
+                            if isinstance(operation.left.typ, ElementaryType) and isinstance(operation.right.typ, ElementaryType) and operation.left.typ != operation.right.typ:
+                                continue
+                            self.results[contract.name].append(DetectorResult(
+                                DetectorType.PERFORMANCE,
+                                f"Contract {contract.name} in function {function.name} uses an inefficient inequality operator: {operation.print()}",
+                                DetectorSeverity.MEDIUM,
+                                DetectorClassification.INFO
+                            ))
 
-    ARGUMENT = "inequality-efficiency-check"
-    HELP = "Switch out non-strict inequalities (>=) for strict ones (>) to save gas."
-    IMPACT = DetectorClassification.LOW
-    CONFIDENCE = DetectorClassification.MEDIUM
-
-    WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#-is-cheaper-than-"
-    WIKI_TITLE = ">= is cheaper than >"
-    WIKI_DESCRIPTION = "Non-strict inequalities (>=) are cheaper than strict ones (>). This is due to some supplementary checks (ISZERO, 3 gas))." 
-
-    def _is_instance(self, ir):  # pylint: disable=no-self-use
-        return isinstance(ir, VariableIncrements)
+    def get_results(self):
+        return self.results
