@@ -1,5 +1,5 @@
 from slither.slither import Slither
-from slither.detectors.abstract_detector import AbstractDetector
+from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.core.solidity_types.function_type import FunctionType
 from slither.core.solidity_types.elementary_type import ElementaryType
 
