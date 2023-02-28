@@ -1,15 +1,14 @@
 """
-Gas: Module detecting default variable initialization
+Gas: Detecting explicit initialization of variables with default values
 
 """
+from collections import defaultdict
+
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
-from slither.analyses.callgraph import CallGraph
-from slither.solc_parsing import parse_from_input_string
-from slither.core.solidity_types.elementary_type import ElementaryType
 
 class DefaultVariableInitialization(AbstractDetector):
     """
-    Gas: Default Variable Initialization
+    Gas: Detecting explicit initialization of variables with default values
     """
 
     ARGUMENT = "default-variable-initialization"
@@ -21,30 +20,25 @@ class DefaultVariableInitialization(AbstractDetector):
     WIKI_TITLE = "No need to explicitly initialize variables with default values"
     WIKI_DESCRIPTION = "If a variable is not set/initialized, it is assumed to have the default value (0 for uint, false for bool, address(0) for address, etc.). Explicitly initializing it with its default value is an anti-pattern and wastes gas."
 
-    def _get_variable_initialization(self, contract):
+    def _get_variable_declarations(self):
         """
-        Get the initialization code for each variable in the contract
+        Returns a list of all variable declarations in the contract.
         """
-        variable_init = {}
-        for variable in contract.variables:
-            if isinstance(variable.type, ElementaryType):
-                variable_init[variable.name] = variable.initial_value
-        return variable_init
-
-    def _check_for_default_initialization(self, variable_init):
-        """
-        Check if any variable is explicitly initialized with its default value
-        """
-        for variable, value in variable_init.items():
-            if value is not None and value != '0':
-                return True
-        return False
+        variable_declarations = []
+        for contract in self.contracts:
+            for variable in contract.variables:
+                variable_declarations.append(variable)
+        return variable_declarations
 
     def analyze(self):
         """
-        Analyze the contract for default variable initialization
+        Analyzes the contract to detect explicit initialization of variables with default values.
         """
-        for contract in self.contracts:
-            variable_init = self._get_variable_initialization(contract)
-            if self._check_for_default_initialization(variable_init):
-                self.alert(f"Contract {contract.name} explicitly initializes variables with default values.", contract=contract)
+        variable_declarations = self._get_variable_declarations()
+        for variable_declaration in variable_declarations:
+            if variable_declaration.initial_value is not None and variable_declaration.initial_value.value == variable_declaration.typ.default_value:
+                self.issue({
+                    "variable_declaration": variable_declaration.name,
+                    "line_number": variable_declaration.node.lineno,
+                    "col_offset": variable_declaration.node.col_offset
+                })
