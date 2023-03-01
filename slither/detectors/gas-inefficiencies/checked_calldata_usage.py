@@ -21,7 +21,7 @@ class GasCalldataParameterCheck(AbstractDetector):
 
     ARGUMENT = "calldata-check"
     HELP = "You can use calldata as storage location in a function rather than memory, if the function is external and read-only."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.HIGH
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#use-calldata-instead-of-memory-for-function-parameters"

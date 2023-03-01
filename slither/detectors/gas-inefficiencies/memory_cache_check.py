@@ -9,7 +9,7 @@ class StorageCacheDetector(AbstractDetector):
 
     ARGUMENT = "storage-cache-check"
     HELP = "Consider caching your storage variables into memory rather than in storage. It is much more efficient gas-wise when reading the variable if it is cached in memory."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#caching-storage-variables-in-memory-to-save-gas"

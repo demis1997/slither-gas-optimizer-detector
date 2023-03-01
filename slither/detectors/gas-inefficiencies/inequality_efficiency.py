@@ -1,5 +1,5 @@
 from slither.core.solidity_types.elementary_type import ElementaryType
-from slither.detectors.abstract_detector import DetectorClassification
+from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
 from slither.detectors.abstract_detector import DetectorResult
 from slither.detectors.abstract_detector import DetectorSeverity
 from slither.detectors.abstract_detector import DetectorType
@@ -7,7 +7,10 @@ from slither.slithir.operations import Operation
 from slither  import Lt, Gt
 from slither import Not
 
-class InefficientInequalityDetector:
+class InefficientInequalityDetector(AbstractDetector):
+
+    IMPACT = DetectorClassification.OPTIMIZATION
+    CONFIDENCE = DetectorClassification.MEDIUM
     def __init__(self, contracts):
         self.contracts = contracts
         self.results = {}

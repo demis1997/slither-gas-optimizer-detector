@@ -10,7 +10,7 @@ class GasShiftOperatorCheck(AbstractDetector):
 
     ARGUMENT = "shift-operators-check"
     HELP = "Shift operators can be used in place of multiplication or division operators where possible."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#use-shift-rightleft-instead-of-divisionmultiplication-if-possible"

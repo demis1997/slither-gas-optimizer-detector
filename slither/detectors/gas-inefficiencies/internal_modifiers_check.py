@@ -12,7 +12,7 @@ class InternalModifierCheck(AbstractDetector):
 
     ARGUMENT = "internal-modifier-check"
     HELP = "Place require statements into internal virtual functions for smaller contract size."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#use-internal-view-functions-in-modifiers-to-save-bytecode"

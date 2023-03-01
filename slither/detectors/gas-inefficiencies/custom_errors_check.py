@@ -14,7 +14,7 @@ class RevertStringDetector(AbstractDetector):
 
     ARGUMENT = "custom-error-check"
     HELP = "Custom errors allow for a more convenient and gas-efficient way of explaining to users why an operation failed."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#use-custom-errors-instead-of-revert-strings-to-save-gas"

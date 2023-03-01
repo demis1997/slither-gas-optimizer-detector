@@ -13,7 +13,7 @@ class GasStorageDeclarationCheck(AbstractDetector):
 
     ARGUMENT = "storage-declaration-check"
     HELP = "You can streamline the referencing of a storage variable by declaring and using it, rather than fetching the variable repeatedly in a map or an array."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#help-the-optimizer-by-saving-a-storage-variables-reference"

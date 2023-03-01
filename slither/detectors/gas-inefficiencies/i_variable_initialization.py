@@ -10,7 +10,7 @@ class GasIVariableInitCheck(AbstractDetector):
 
     ARGUMENT = "i-variable-initialization"
     HELP = "The i variable should still be initialized in the for loop."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#dont-remove-the-initialization-of-i-variable-in-for-loops"

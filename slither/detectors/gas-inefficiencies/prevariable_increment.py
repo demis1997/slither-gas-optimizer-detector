@@ -19,7 +19,7 @@ class GasVariableIncrementCheck(AbstractDetector):
 
     ARGUMENT = "gas-pre-variable-increment"
     HELP = "The increment of the variable can be placed before the variable"
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#i-costs-less-gas-compared-to-i-or-i--1"

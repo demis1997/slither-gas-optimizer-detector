@@ -12,7 +12,7 @@ class GasInefficientLoopCheck(AbstractDetector):
 
     ARGUMENT = "gas-checked-increment-for-loop"
     HELP = "The increment in the for loop post condition can be made unchecked"
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#the-increment-in-the-for-loops-post-condition-can-be-made-unchecked"

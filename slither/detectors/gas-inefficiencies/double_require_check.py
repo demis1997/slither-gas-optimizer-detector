@@ -10,7 +10,7 @@ class DoubleRequireCheck(AbstractDetector):
 
     ARGUMENT = "double-require-check"
     HELP = "Replace && with double require to save gas."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#use-double-require-instead-of-operator-"

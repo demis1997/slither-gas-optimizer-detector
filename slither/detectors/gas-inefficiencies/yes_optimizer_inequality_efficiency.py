@@ -17,7 +17,7 @@ class GasYesOptimizerInequalityCheck(AbstractDetector):
 
     ARGUMENT = "yes-optimizer-inequality-efficiency"
     HELP = "Use ! = 0 within your require statements rather than > 0, and > 0 outside your require statements rather than ! = 0, to save gas."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#-0-is-cheaper-than--0-sometimes"

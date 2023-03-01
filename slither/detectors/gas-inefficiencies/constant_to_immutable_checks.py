@@ -16,7 +16,7 @@ class ConstantKeccakVariableDetector(AbstractDetector):
 
     ARGUMENT = "constant-to-immutable-check"
     HELP = "The keccak variable can be changed to immutable rather than constant."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#change-constant-to-immutable-for-keccak-variables"

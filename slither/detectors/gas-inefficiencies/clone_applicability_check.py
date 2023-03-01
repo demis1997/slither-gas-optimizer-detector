@@ -15,7 +15,7 @@ class GasCloneApplicabilityCheck(AbstractDetector):
 
     ARGUMENT = "clone-applicability-check"
     HELP = "If this is a factory contract, a clone will save you a lot of gas and provide identical function and utility."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#use-clones-for-cheap-contract-deployments"

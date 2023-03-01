@@ -18,7 +18,7 @@ class GasInefficientLoopLength(AbstractDetector):
 
     ARGUMENT = "gas-length-within-for-loop"
     HELP = "Gas Inefficiencies Detected"
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#caching-the-length-in-for-loops"

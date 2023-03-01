@@ -11,7 +11,7 @@ from slither.core.solidity_types.type import Type
 
 ARGUMENT = "no-optimizer-inequality-efficiency"
 HELP = "Consider using ! = 0 outside of any require statements rather than > = 0 to save gas."
-IMPACT = DetectorClassification.LOW
+IMPACT = DetectorClassification.OPTIMIZATION
 CONFIDENCE = DetectorClassification.MEDIUM
 
 WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#-0-is-cheaper-than--0-sometimes"

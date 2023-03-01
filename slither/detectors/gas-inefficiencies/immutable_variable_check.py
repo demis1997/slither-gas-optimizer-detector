@@ -13,7 +13,7 @@ class GasImmutableVariableCheck(AbstractDetector):
 
     ARGUMENT = "immutable-variable-check"
     HELP = "A state variable that will remain constant can be set as immutable to save gas."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#change-state-variables-to-immutable-where-possible"

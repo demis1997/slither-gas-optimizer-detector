@@ -13,7 +13,7 @@ class DefaultVariableInitialization(AbstractDetector):
 
     ARGUMENT = "default-variable-initialization"
     HELP = "The variable can simply be declared instead of initialized to its default value"
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#no-need-to-explicitly-initialize-variables-with-default-values"

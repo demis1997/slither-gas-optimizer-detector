@@ -10,7 +10,7 @@ class GasModifierCheck(AbstractDetector):
 
     ARGUMENT = "modifier-check"
     HELP = "Rather than writing a function, you could trade that out for a modifier that does the same thing."
-    IMPACT = DetectorClassification.LOW
+    IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
 
     WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#use-modifiers-instead-of-functions-to-save-gas"
