@@ -8,9 +8,13 @@ from slither  import Lt, Gt
 from slither import Not
 
 class InefficientInequalityDetector(AbstractDetector):
-
+    
+    WIKI = "https://github.com/demis1997/slither-gas-optimizer-detector/wiki/Solidity-Gas-Optimizations-and-Tricks#-is-cheaper-than-"
+    WIKI_TITLE = ">= is cheaper than >"
+    WIKI_DESCRIPTION = "Non-strict inequalities (>=) are cheaper than strict ones (>). Non-strict inequalities will save you 15–20 gas."
     IMPACT = DetectorClassification.OPTIMIZATION
     CONFIDENCE = DetectorClassification.MEDIUM
+
     def __init__(self, contracts):
         self.contracts = contracts
         self.results = {}
