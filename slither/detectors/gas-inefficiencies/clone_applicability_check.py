@@ -3,9 +3,9 @@ Gas: Consider using a clone when deploying a factory contract.
 
 """
 from slither.detectors.abstract_detector import AbstractDetector, DetectorClassification
-from slither.solidity_types.function_type import FunctionType
+from slither.core.solidity_types import FunctionType
 from slither.solc_parsing import SolcParsing
-from slither.core.solidity_types.contract_type import ContractType
+from slither.core.solidity_types import ContractType
 
 
 class GasCloneApplicabilityCheck(AbstractDetector):
