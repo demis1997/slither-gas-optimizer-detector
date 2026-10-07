@@ -1,0 +1,10 @@
+
+
+# Local environments and generated artifacts
+node_modules/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.venv/
